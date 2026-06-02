@@ -4,7 +4,7 @@ This project is a real-world data analytics case study based on an e-commerce in
 The objective of this project is to simulate the day-to-day responsibilities of a Data Analyst by working with raw inventory data and transforming it into meaningful business insights using SQL.
 
 
-#📌 Project Overview
+📌 Project Overview
 
 The goal is to simulate how actual data analysts in the e-commerce or retail industries work behind the scenes to use SQL to : 
 
@@ -20,87 +20,87 @@ The goal is to simulate how actual data analysts in the e-commerce or retail ind
 
 📁 Dataset Overview
 
-The dataset was sourced from Kaggle and was originally scraped from Zepto’s official product listings. It mimics what you’d typically encounter in a real-world e-commerce inventory system.
+   The dataset was sourced from Kaggle and was originally scraped from Zepto’s official product listings. It mimics what you’d typically encounter in a real-world      e-commerce inventory system.
 
-Each row represents a unique SKU (Stock Keeping Unit) for a product. Duplicate product names exist because the same product may appear multiple times in different package sizes, weights, discounts, or categories to improve visibility – exactly how real catalog data looks.
+   Each row represents a unique SKU (Stock Keeping Unit) for a product. Duplicate product names exist because the same product may appear multiple times in             different package sizes, weights, discounts, or categories to improve visibility – exactly how real catalog data looks.
 
-#🧾 Columns:
+🧾 Columns:
 
-sku_id: Unique identifier for each product entry (Synthetic Primary Key)
+  sku_id: Unique identifier for each product entry (Synthetic Primary Key)
 
-name: Product name as it appears on the app
+  name: Product name as it appears on the app
 
-category: Product category like Fruits, Snacks, Beverages, etc.
+  category: Product category like Fruits, Snacks, Beverages, etc.
 
-mrp: Maximum Retail Price (originally in paise, converted to ₹)
+  mrp: Maximum Retail Price (originally in paise, converted to ₹)
 
-discountPercent: Discount applied on MRP
+  discountPercent: Discount applied on MRP
 
-discountedSellingPrice: Final price after discount (also converted to ₹)
+  discountedSellingPrice: Final price after discount (also converted to ₹)
 
-availableQuantity: Units available in inventory
+  availableQuantity: Units available in inventory
 
-weightInGms: Product weight in grams
+  weightInGms: Product weight in grams
 
-outOfStock: Boolean flag indicating stock availability
+  outOfStock: Boolean flag indicating stock availability
 
-quantity: Number of units per package (mixed with grams for loose produce)
+  quantity: Number of units per package (mixed with grams for loose produce)
 
 
-#🔧 Project Workflow
+🔧 Project Workflow
 
-1. I start by creating a SQL table with appropriate data types:
+1.  I start by creating a SQL table with appropriate data types:
 
-CREATE TABLE zepto (
-  sku_id SERIAL PRIMARY KEY,
-  category VARCHAR(120),
-  name VARCHAR(150) NOT NULL,
-  mrp NUMERIC(8,2),
-  discountPercent NUMERIC(5,2),
-  availableQuantity INTEGER,
-  discountedSellingPrice NUMERIC(8,2),
-  weightInGms INTEGER,
-  outOfStock BOOLEAN,
-  quantity INTEGER
-);
+    CREATE TABLE zepto (
+        sku_id SERIAL PRIMARY KEY,
+        category VARCHAR(120),
+        name VARCHAR(150) NOT NULL,
+        mrp NUMERIC(8,2),
+        discountPercent NUMERIC(5,2),
+        availableQuantity INTEGER,
+        discountedSellingPrice NUMERIC(8,2),
+        weightInGms INTEGER,
+        outOfStock BOOLEAN,
+        quantity INTEGER
+     );
 
 2. Data Import
 
-Loaded CSV using pgAdmin's import feature.
-Faced encoding issues (UTF-8 error), which were fixed by saving the CSV file using CSV UTF-8 format.
+   Loaded CSV using pgAdmin's import feature.
+   Faced encoding issues (UTF-8 error), which were fixed by saving the CSV file using CSV UTF-8 format.
 
 3. 🔍 Data Exploration
 
-Counted the total number of records in the dataset.
-Viewed a sample of the dataset to understand structure and content.
-Checked for null values across all columns.
-Identified distinct product categories available in the dataset.
-Compared in-stock vs out-of-stock product counts.
-Detected products present multiple times, representing different SKUs.
+    Counted the total number of records in the dataset.
+    Viewed a sample of the dataset to understand structure and content.
+    Checked for null values across all columns.
+    Identified distinct product categories available in the dataset.
+    Compared in-stock vs out-of-stock product counts.
+    Detected products present multiple times, representing different SKUs.
 
 4. 🧹 Data Cleaning
 
-Identified and removed rows where MRP or discounted selling price was zero.
-Converted mrp and discountedSellingPrice from paise to rupees for consistency and readability.
+    Identified and removed rows where MRP or discounted selling price was zero.
+    Converted mrp and discountedSellingPrice from paise to rupees for consistency and readability.
 
 
 5. 📊 Business Insights
 
-Found the top 10 best-value products based on discount percentage.
+   Found the top 10 best-value products based on discount percentage.
 
-Identified high-MRP products that are currently out of stock.
+   Identified high-MRP products that are currently out of stock.
 
-Estimated potential revenue for each product category.
+   Estimated potential revenue for each product category.
 
-Filtered expensive products (MRP > ₹500) with minimal discount.
+   Filtered expensive products (MRP > ₹500) with minimal discount.
 
-Ranked the top 5 categories offering the highest average discounts.
+   Ranked the top 5 categories offering the highest average discounts.
 
-Calculated price per gram to identify value-for-money products.
+   Calculated price per gram to identify value-for-money products.
 
-Grouped products based on weight into Low, Medium, and Bulk categories.
+   Grouped products based on weight into Low, Medium, and Bulk categories.
 
-Measured total inventory weight per product category.
+   Measured total inventory weight per product category.
 
 
 
